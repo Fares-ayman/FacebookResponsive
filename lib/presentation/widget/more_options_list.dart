@@ -16,47 +16,51 @@ class MoreOptionsList extends StatelessWidget {
   ];
 
   final UserEntity currentUser;
-  const MoreOptionsList({Key? key,required this.currentUser}) : super(key: key);
+
+  const MoreOptionsList({Key? key, required this.currentUser})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(maxWidth: 280.0),
       child: ListView.builder(
-        itemCount: 1+_moreOptionsList.length,
-        itemBuilder: (context,index){
-          if (index==0)
-            {
-              return Padding(
-                padding: EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
-                  onTap: ()=>print("User Card"),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ProfileAvatar(imageUrl: currentUser.imageUrl),
-                      SizedBox(width: 6.0,),
-                      Flexible(child: Text("${currentUser.name}",style: TextStyle(fontSize:16.0,fontWeight: FontWeight.w500 ),overflow: TextOverflow.ellipsis,)),
-                    ],
-                  ),
+        itemCount: 1 + _moreOptionsList.length,
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            return Padding(
+              padding: EdgeInsets.symmetric(vertical: 8.0),
+              child: InkWell(
+                onTap: () => print("User Card"),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ProfileAvatar(imageUrl: currentUser.imageUrl),
+                    SizedBox(
+                      width: 6.0,
+                    ),
+                    Flexible(
+                        child: Text(
+                      "${currentUser.name}",
+                      style: TextStyle(
+                          fontSize: 16.0, fontWeight: FontWeight.w500),
+                      overflow: TextOverflow.ellipsis,
+                    )),
+                  ],
                 ),
-              );
-            }
-          final List option=_moreOptionsList[index-1];
+              ),
+            );
+          }
+          final List option = _moreOptionsList[index - 1];
           return Padding(
             padding: EdgeInsets.symmetric(vertical: 8.0),
-            child: _option(
-              icon:option[0],
-              color:option[1],
-              label:option[2]
-            ),
+            child: _option(icon: option[0], color: option[1], label: option[2]),
           );
         },
       ),
     );
   }
 }
-
 
 class _option extends StatelessWidget {
   final IconData icon;

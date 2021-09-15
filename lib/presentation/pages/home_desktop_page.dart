@@ -10,18 +10,16 @@ import 'package:facebook/presentation/widget/stories.dart';
 import 'package:flutter/material.dart';
 
 class HomeDesktopPage extends StatelessWidget {
-  // final TrackingScrollController trackingScrollController;
   final List<UserEntity> users;
   final List<PostEntity> posts;
   final List<StoryEntity> stories;
-  const HomeDesktopPage(
-      {Key? key,
-      required this.users,
-      required this.posts,
-      required this.stories,
-       // required this.trackingScrollController,
-      })
-      : super(key: key);
+
+  const HomeDesktopPage({
+    Key? key,
+    required this.users,
+    required this.posts,
+    required this.stories,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +30,14 @@ class HomeDesktopPage extends StatelessWidget {
           child: Align(
             alignment: Alignment.centerLeft,
             child: Padding(
-              padding:EdgeInsets.all(12.0),
-              child: MoreOptionsList(currentUser:users[0])
-            ),
+                padding: EdgeInsets.all(12.0),
+                child: MoreOptionsList(currentUser: users[0])),
           ),
         ),
         Spacer(),
         Container(
           width: 600.0,
           child: CustomScrollView(
-             // controller: trackingScrollController,
             scrollDirection: Axis.vertical,
             slivers: [
               SliverPadding(
@@ -49,9 +45,8 @@ class HomeDesktopPage extends StatelessWidget {
                 sliver: SliverToBoxAdapter(
                   child: Stories(
                     users: users,
-                    stories:stories,
-                  )
-                  ,
+                    stories: stories,
+                  ),
                 ),
               ),
               SliverToBoxAdapter(
@@ -67,19 +62,19 @@ class HomeDesktopPage extends StatelessWidget {
                   ),
                 ),
               ),
-
               SliverList(
-                delegate: SliverChildBuilderDelegate((context, index) {
-                  final PostEntity post = posts[index];
-                  final UserEntity user = users[index];
-                  List<String> images = [];
-                  if (post.imageUrl != null) images = post.imageUrl!.split(" ");
-                  return PostContainer(
-                    post: post,
-                    user: user,
-                    images: images,
-                  );
-                }, childCount: posts.length),
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    final PostEntity post = posts[index];
+                    final UserEntity user = users[index];
+                    return PostContainer(
+                      post: post,
+                      user: user,
+                      users: users,
+                    );
+                  },
+                  childCount: posts.length,
+                ),
               )
             ],
           ),
@@ -90,8 +85,10 @@ class HomeDesktopPage extends StatelessWidget {
           child: Align(
             alignment: Alignment.centerRight,
             child: Padding(
-              padding:EdgeInsets.all(12.0),
-              child: ContactsList(users: users.getRange(1, users.length).toList(),),
+              padding: EdgeInsets.all(12.0),
+              child: ContactsList(
+                users: users.getRange(1, users.length).toList(),
+              ),
             ),
           ),
         ),

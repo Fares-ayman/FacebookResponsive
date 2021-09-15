@@ -8,22 +8,20 @@ import 'package:facebook/presentation/widget/stories.dart';
 import 'package:flutter/material.dart';
 
 class HomeMobilePage extends StatelessWidget {
-  // final TrackingScrollController trackingScrollController;
   final List<UserEntity> users;
   final List<PostEntity> posts;
   final List<StoryEntity> stories;
+
   const HomeMobilePage({
     Key? key,
     required this.users,
     required this.posts,
     required this.stories,
-    // required this.trackingScrollController,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      // controller: trackingScrollController,
       scrollDirection: Axis.vertical,
       slivers: [
         SliverToBoxAdapter(
@@ -49,17 +47,18 @@ class HomeMobilePage extends StatelessWidget {
           ),
         ),
         SliverList(
-          delegate: SliverChildBuilderDelegate((context, index) {
-            final PostEntity post = posts[index];
-            final UserEntity user = users[index];
-            List<String> images = [];
-            if (post.imageUrl != null) images = post.imageUrl!.split(" ");
-            return PostContainer(
-              post: post,
-              user: user,
-              images: images,
-            );
-          }, childCount: posts.length),
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              final PostEntity post = posts[index];
+              final UserEntity user = users[index];
+              return PostContainer(
+                post: post,
+                user: user,
+                users: users,
+              );
+            },
+            childCount: posts.length,
+          ),
         )
       ],
     );

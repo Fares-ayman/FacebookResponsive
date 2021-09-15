@@ -5,7 +5,6 @@ class Palette {
 
   static const Color facebookBlue = Color(0xFF1777F2);
 
-
   static const Color online = Color(0xFF4BCB1F);
 
   static const LinearGradient storyGradient = LinearGradient(

@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 class CustomAppbarMobile extends StatelessWidget {
   final List<IconData> icons;
   final int selectedIndex;
-  // final Function(int) onTap;
   final TabController controller;
+
   const CustomAppbarMobile({
     Key? key,
     required this.icons,
     required this.selectedIndex,
-   // required this.onTap,
+    // required this.onTap,
     required this.controller,
   }) : super(key: key);
 
@@ -37,7 +37,6 @@ class CustomAppbarMobile extends StatelessWidget {
               ))
           .values
           .toList(),
-      //onTap: onTap,
     );
   }
 }

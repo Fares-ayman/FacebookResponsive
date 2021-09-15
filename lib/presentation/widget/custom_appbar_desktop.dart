@@ -10,14 +10,13 @@ class CustomAppbarDesktop extends StatelessWidget {
   final TabController controller;
   final List<IconData> icons;
   final int selectedIndex;
-  // final Function(int) onTap;
   final UserEntity currentUser;
+
   const CustomAppbarDesktop({
     Key? key,
     required this.currentUser,
     required this.icons,
     required this.selectedIndex,
-    //required this.onTap,
     required this.controller,
   }) : super(key: key);
 

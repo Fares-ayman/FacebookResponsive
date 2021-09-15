@@ -1,14 +1,13 @@
 import 'dart:async';
+
 import 'package:facebook/domain/entities/post_entity.dart';
 import 'package:facebook/domain/entities/user_entity.dart';
+import 'package:facebook/presentation/bloc/post/post_cubit.dart';
+import 'package:facebook/presentation/bloc/user/user_cubit.dart';
 import 'package:facebook/presentation/widget/appbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:facebook/presentation/bloc/post/post_cubit.dart';
-import 'package:facebook/presentation/bloc/user/user_cubit.dart';
-
-import 'home_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({Key? key}) : super(key: key);
@@ -17,11 +16,10 @@ class NavigationScreen extends StatefulWidget {
   _NavigationScreenState createState() => _NavigationScreenState();
 }
 
-class _NavigationScreenState extends State<NavigationScreen> with SingleTickerProviderStateMixin  {
-
-
+class _NavigationScreenState extends State<NavigationScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _controller;
-  // late Size screenSize;
+
   late List<UserEntity> users;
   late List<PostEntity> posts;
   late UserEntity currentUser;
@@ -47,10 +45,10 @@ class _NavigationScreenState extends State<NavigationScreen> with SingleTickerPr
   }
 
   _handleTabSelection() {
-      setState(() {
-        _selectedIndex = _controller.index;
-      });
-    }
+    setState(() {
+      _selectedIndex = _controller.index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +65,13 @@ class _NavigationScreenState extends State<NavigationScreen> with SingleTickerPr
                 builder: (context, postState) {
                   if (postState is PostLoaded) {
                     posts = postState.posts;
-                    return AppbarWidget(selectedIndex: _selectedIndex, controller: _controller, currentUser: currentUser, icons: _icons, users: users, posts: posts);
+                    return AppbarWidget(
+                        selectedIndex: _selectedIndex,
+                        controller: _controller,
+                        currentUser: currentUser,
+                        icons: _icons,
+                        users: users,
+                        posts: posts);
                   }
                   return Container();
                 },

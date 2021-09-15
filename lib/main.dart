@@ -5,14 +5,14 @@ import 'package:facebook/domain/repositories/local_data_repository.dart';
 import 'package:facebook/domain/usecases/get_all_stories_usecase.dart';
 import 'package:facebook/domain/usecases/get_all_users_usecase.dart';
 import 'package:facebook/presentation/bloc/post/post_cubit.dart';
-import 'package:facebook/presentation/bloc/user/user_cubit.dart';
 import 'package:facebook/presentation/bloc/story/story_cubit.dart';
-import 'package:facebook/presentation/screens/home_screen.dart';
+import 'package:facebook/presentation/bloc/user/user_cubit.dart';
 import 'package:facebook/presentation/screens/navigation_screen.dart';
 import 'package:facebook/presentation/widget/style/palette.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'domain/usecases/get_all_posts_usecase.dart';
 
 void main() {
@@ -52,13 +52,11 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: Palette.scaffold
-        ),
+            primarySwatch: Colors.blue,
+            scaffoldBackgroundColor: Palette.scaffold),
         debugShowCheckedModeBanner: false,
         home: NavigationScreen(),
       ),
     );
   }
 }
-
